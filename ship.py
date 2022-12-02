@@ -7,7 +7,7 @@ class Ship:
         # Load the ship image and  get its rect.
 
         self.settings = Settings()
-        self.image = pygame.image.load("spaceship.png")
+        self.image = pygame.image.load("final_game\spaceship.png")
         self.rect = self.image.get_rect()
 
         # Start each new ship at the bottom center of the screen.

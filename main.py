@@ -10,7 +10,6 @@ pygame.init()
 # creating a screen and get rect parameters
 screen = pygame.display.set_mode((1000, 1000))
 screen_rect = screen.get_rect()
-
 pygame.display.set_caption("To the Moon!")
 
 # create a ship object and moon object
@@ -54,10 +53,9 @@ def _check_keyup_events(event):
 
 def _check_moon_edges():
     """Respond appropriately if the moon has reached an edge."""
-    if moon.check_edges(screen):
+    if moon.check_edges():
         settings.moon_direction *= -1
-    else:
-        moon.rect.x = screen_rect.x
+
 
         #break
 
@@ -71,20 +69,19 @@ def _update_screen():
 
 while True:
     _check_events()
-
-    moon.check_edges(screen)
-    #moon.update()
-
+    moon.check_edges()
+    moon.update()
     ship.update(screen_rect)
-
     _update_screen()
-
-    #_check_moon_edges()
+    _check_moon_edges()
 
     pygame.display.flip()
 
     collision = pygame.sprite.collide_rect(ship, moon)
     if collision:
+        ship.moving_up = False
+        moon.moving_right = False
+        moon.moving_left = False
         screen = pygame.display.set_mode((1000, 1000))
         settings.bg_color = (0, 255, 0)
         pygame.display.set_caption("You win!")
