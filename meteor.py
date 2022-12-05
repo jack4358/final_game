@@ -8,8 +8,8 @@ class Meteor:
     def __init__(self):
         self.settings = Settings()
         self.image = pygame.image.load('final_game\meteor.png')
-
         self.rect = self.image.get_rect()
+
         # Start each new meteor towards top right of the screen.
 
         self.rect.x = 800

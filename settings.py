@@ -7,8 +7,8 @@ class Settings:
         self.bg_color = (0, 0, 0)
 
         # ship settings
-        self.ship_speed = 1.5
-        self.ship_up_speed = -0.8
+        self.ship_speed = 1.0
+        self.ship_up_speed = -0.5
 
         # moon settings
         self.moon_speed = 0.5
@@ -19,5 +19,6 @@ class Settings:
         self.meteor_direction = 1
 
         # UFO settings
-        self.ufo_speed = 0.3
-        self.ufo_direction = 1
+        self.ufo_speed = 0.6
+        self.ufo_up_speed = -0.6
+        self.ufo_down_speed = 0.6
