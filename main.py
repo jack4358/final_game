@@ -3,6 +3,7 @@ import time
 import pygame
 from ship import Ship
 from moon import Moon
+from meteor import Meteor
 from settings import Settings
 
 pygame.init()
@@ -15,10 +16,13 @@ pygame.display.set_caption("To the Moon!")
 # create a ship object and moon object
 ship = Ship()
 moon = Moon()
+meteor = Meteor()
 settings = Settings()
+
 
 ship.blitme(screen)
 moon.blitme(screen)
+meteor.blitme(screen)
 
 def _check_events():
     """Respond to keypresses and mouse events."""
@@ -51,60 +55,36 @@ def _check_keyup_events(event):
         ship.moving_left = False
 
 
-def _check_moon_edges():
-    """Respond appropriately if the moon has reached an edge."""
-    if moon.check_edges():
-        settings.moon_direction *= -1
-
-
-        #break
-
-
 def _update_screen():
     """Update images on the screen, and flip to the new screen."""
     screen.fill(settings.bg_color)
     ship.blitme(screen)
     moon.blitme(screen)
+    meteor.blitme(screen)
 
 
 while True:
     _check_events()
-    moon.check_edges()
     moon.update()
+    meteor.update()
     ship.update(screen_rect)
     _update_screen()
-    _check_moon_edges()
+
 
     pygame.display.flip()
 
-    collision = pygame.sprite.collide_rect(ship, moon)
+    collision = pygame.sprite.collide_rect(ship,moon)
     if collision:
         ship.moving_up = False
-        moon.moving_right = False
-        moon.moving_left = False
+        ship.moving_left = False
+        ship.moving_right = False
+        #stop moon update and meteor update from running
         screen = pygame.display.set_mode((1000, 1000))
         settings.bg_color = (0, 255, 0)
         pygame.display.set_caption("You win!")
         pygame.display.flip()
 
+    badcollsion1 = pygame.sprite.collide_rect(ship,meteor)
 
+    badcollision2 = pygame.sprite.collide_rect(ship,ufo)
 
-
-
-
-
-
-
-
-
-
-# rows = screen_rect.height
-# cols = screen_rect.width
-
-#def draw_background():
-    # for x in range(rows):
-    #     for y in range(cols):
-    #         screen.blit(ship.image, ())
-
-
- #draw_background()

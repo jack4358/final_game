@@ -19,3 +19,5 @@ class Settings:
         self.meteor_direction = 1
 
         # UFO settings
+        self.ufo_speed = 0.3
+        self.ufo_direction = 1
