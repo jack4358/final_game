@@ -15,7 +15,7 @@ class Settings:
         self.moon_direction = 1
 
         # Meteor settings
-        self.meteor_speed = 0.9
+        self.meteor_speed = 0.7
         self.meteor_direction = 1
 
         # UFO settings

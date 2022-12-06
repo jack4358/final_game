@@ -10,6 +10,10 @@ class Ship:
         self.image = pygame.image.load("final_game\spaceship.png")
         self.rect = self.image.get_rect()
 
+        self.deadimage = pygame.image.load("final_game\explosion.png")
+        self.health = 100
+
+
         # Start each new ship at the bottom center of the screen.
         self.rect.x = 500
         self.rect.y = 720
@@ -43,4 +47,8 @@ class Ship:
 
     def blitme(self, screen):
         """Draw the ship at its current location"""
+        if self.health == 100:
+            self.image = self.image
+        if self.health == 0:
+            self.image = self.deadimage
         screen.blit(self.image, self.rect)

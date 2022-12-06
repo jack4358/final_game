@@ -39,8 +39,9 @@ moon.blitme(screen)
 meteor.blitme(screen)
 ufo.blitme(screen)
 
-#def ambient_sound()
-    #pygame.mixer.Sound.play(space_sound)
+def ambient_sound():
+    pygame.mixer.Sound.play(space_sound)
+    space_sound.play(-1)
 
 def _check_events():
     """Respond to keypresses and mouse events."""
@@ -99,28 +100,71 @@ def _update_screen():
     meteor.blitme(screen)
     ufo.blitme(screen)
 
+# def _wincollision_update_screen():
+#     """update to win screen if a good collision occurs."""
+#
+# def _losecollision_update_screen():
+#     """update to lose screen if a bad collision occurs"""
+
 while True:
+    ambient_sound()
     _check_events()
     moon.update()
     meteor.update()
     ufo.update(screen_rect)
     ship.update(screen_rect)
     _update_screen()
+    #
+    # pygame.display.flip()
 
-    pygame.display.flip()
+    collision = pygame.sprite.collide_rect(ship,moon)
+    if collision:
+        ship.moving_up = False
+        ship.moving_left = False
+        ship.moving_right = False
+        ufo.moving_left = False
+        ufo.moving_right = False
+        ufo.moving_up = False
+        ufo.moving_down = False
+        #stop moon update and meteor update from running
+        screen = pygame.display.set_mode((1000, 1000))
+        settings.bg_color = (0, 255, 0)
+        pygame.display.set_caption("You win!")
+        #_wincollision_update_screen()
 
-    # collision = pygame.sprite.collide_rect(ship,moon)
-    # if collision:
+    # badcollision1 = pygame.sprite.collide_rect(ship,meteor)
+    # if badcollision1:
+    #     pygame.mixer.Sound.play(boom)
+    #     ship.health -= 100
     #     ship.moving_up = False
     #     ship.moving_left = False
     #     ship.moving_right = False
+    #     ufo.moving_left = False
+    #     ufo.moving_right = False
+    #     ufo.moving_up = False
+    #     ufo.moving_down = False
     #     #stop moon update and meteor update from running
     #     screen = pygame.display.set_mode((1000, 1000))
-    #     settings.bg_color = (0, 255, 0)
-    #     pygame.display.set_caption("You win!")
-    #     pygame.display.flip()
+    #     settings.bg_color = (255, 0, 0)
+    #     pygame.display.set_caption("You lose!")
+    #     _losecollision_update_screen()
+    #
+    # badcollision2 = pygame.sprite.collide_rect(ship,ufo)
+    # if badcollision2:
+    #     pygame.mixer.Sound.play(boom)
+    #     ship.health -= 100
+    #     ship.moving_up = False
+    #     ship.moving_left = False
+    #     ship.moving_right = False
+    #     ufo.moving_left = False
+    #     ufo.moving_right = False
+    #     ufo.moving_up = False
+    #     ufo.moving_down = False
+    #     # stop moon update and meteor update from running
+    #     screen = pygame.display.set_mode((1000, 1000))
+    #     settings.bg_color = (255, 0, 0)
+    #     pygame.display.set_caption("You lose!")
+#         _losecollision_update_screen()
 
-    #badcollsion1 = pygame.sprite.collide_rect(ship,meteor)
 
-    #badcollision2 = pygame.sprite.collide_rect(ship,ufo)
-
+    pygame.display.flip()
