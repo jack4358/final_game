@@ -8,7 +8,7 @@ class Settings:
 
         # ship settings
         self.ship_speed = 1.0
-        self.ship_up_speed = -0.5
+        self.ship_up_speed = -0.3
 
         # moon settings
         self.moon_speed = 0.5
