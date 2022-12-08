@@ -1,6 +1,6 @@
 import sys
 import pygame.font
-import time
+from pygame import time
 import pygame
 from ship import Ship
 from moon import Moon
@@ -11,13 +11,6 @@ from settings import Settings
 
 #initialize program
 pygame.init()
-
-# #####
-# #Click to start screen
-# screen1 = pygame.display.set_mode(1000,1000)
-# screen1_rect = screen1.get_rect()
-
-#####
 
 # creating a screen and get rect parameters
 screen = pygame.display.set_mode((1000, 1000))
@@ -48,6 +41,7 @@ def ambient_sound():
     pygame.mixer.Sound.play(space_sound)
     space_sound.play(-1)
 
+
 def _check_events():
     """Respond to keypresses and mouse events."""
     for event in pygame.event.get():
@@ -61,9 +55,6 @@ def _check_events():
 
 def _check_keydown_events(event):
     """Respond to keypresses."""
-    #keypress for reset
-    if event.key == pygame.K_r:
-        reset()
     #keypresses for ship
     if event.key == pygame.K_RIGHT:
         ship.moving_right = True
@@ -124,11 +115,9 @@ def check_collisions():
         img_rect = word.get_rect()
         img_rect.center = screen.get_rect().center
         screen.blit(word, img_rect)
-        #pygame.display.flip()
         pygame.time.wait(3000)
     if pygame.sprite.collide_rect(ship,meteor) or pygame.sprite.collide_rect(ship,ufo):
         ship.health = 0
-        ship.blitme(screen)
         pygame.mixer.Sound.stop(space_sound)
         pygame.mixer.Sound.play(boom)
         ship.moving_up = False
@@ -146,19 +135,9 @@ def check_collisions():
         img_rect = word.get_rect()
         img_rect.center = screen.get_rect().center
         screen.blit(word, img_rect)
-        #pygame.display.flip()
         pygame.time.wait(3000)
     pygame.display.flip()
 
-def reset():
-    settings.bg_color = (0,0,0)
-    screen.fill(settings.bg_color)
-    ship.health = 100
-    ship.blitme(screen)
-    moon.blitme(screen)
-    meteor.blitme(screen)
-    ufo.blitme(screen)
-    #pygame.display.flip()
 
 
 # main game loop
@@ -169,9 +148,7 @@ while True:
     meteor.update()
     ufo.update(screen_rect)
     ship.update(screen_rect)
-    #_update_screen()
-    check_collisions()
     _update_screen()
-    #reset()
-    # pygame.display.flip()
+    check_collisions()
+    pygame.display.flip()
 

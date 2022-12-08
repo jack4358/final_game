@@ -11,7 +11,6 @@ class Meteor:
         self.rect = self.image.get_rect()
 
         # Start each new meteor towards top right of the screen.
-
         self.rect.x = 800
         self.rect.y = 350
 

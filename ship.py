@@ -11,8 +11,10 @@ class Ship:
         self.rect = self.image.get_rect()
 
         self.deadimage = pygame.image.load("final_game\explosion.png")
-        self.health = 100
+        self.deadrect = self.deadimage.get_rect()
 
+        # Initialize ship health
+        self.health = 100
 
         # Start each new ship at the bottom center of the screen.
         self.rect.x = 500

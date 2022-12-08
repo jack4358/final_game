@@ -24,14 +24,6 @@ class Moon:
         self.x += (self.settings.moon_speed * self.settings.moon_direction)
         self.rect.x = self.x
 
-        # if self.rect.right >= screen_rect.right:
-        #     self.x -= self.settings.moon_speed
-        #     #self.rect.x = self.x
-        # if self.rect.left < 0:
-        #     self.x += self.settings.moon_speed
-        #     #self.rect.x = self.x
-        # if not self.rect.right > screen_rect.right or self.rect.left < 0:
-
 
     def check_edges(self):
         """Return True if moon is at edge of screen."""
