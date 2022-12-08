@@ -1,0 +1,27 @@
+To the Moon!
+
+In this game, player 1 controls a rocket that must make a safe landing on the Moon. Watch out, though! Asteroids hurtling through space can wreck you if they hit you! And not only that, Aliens (controlled by player 2) chase you as well! Good luck spaceman.
+
+Relevant Files:
+    enemy.png - image of the ufo
+    explosion.png - image of the explosion
+    meteor.png - image of the meteor
+    spaceship.png - image of the spaceship
+    planet.png - image of the moon
+    kaboom.mp3 - sound of explosion
+    space.mp3 - ambient sound of space
+    main.py - houses all main functions which run the game
+    moon.py - houses functions associated with moving the moon
+    meteor.py - houses functions associated with moving the meteor
+    ship.py - houses functions associated with moving and launching the ship
+    ufo.py - houses functions associated with moving the ufo around
+    settings.py - houses functions that act as settings for ship, moon, meteor, ufo, screen, etc.
+
+
+Run the game by pressing the green triangle at the top!
+
+Credits:
+    Ethan Sullivan
+    Bella Rubijono
+    Grace Lout
+    
